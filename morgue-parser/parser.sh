@@ -8,6 +8,8 @@
 
 # sum up the score
 . scripts/scores.sh
+# count the processed morgue files
+. scripts/count.sh
 
 #
 # player 
@@ -26,7 +28,8 @@ parseMorgue () {
 
     local file="$1";
 
-    collectScore $file
+    collectScore $file;
+    count $file;
 }
 
 for i in $(find $PLAYER -type f -name \*.txt)
@@ -34,5 +37,6 @@ do
     parseMorgue $i;
 done;
 
-scores=$(getScore)
-echo "$PLAYER has scored $scores points.";
+count=$(getCount);
+scores=$(getScore);
+echo "$PLAYER has scored $scores points in $count runs.";
