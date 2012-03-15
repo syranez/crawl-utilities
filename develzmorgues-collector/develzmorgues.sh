@@ -37,7 +37,7 @@ getUris () {
         exit 1;
     fi
 
-    wget "${1}" -q -O - | tr '>' '>\n' | grep '\.txt' | sed 's/^.*http/http/g' | sed 's/\.txt.*$/\.txt/g' > "${TEMP_URI_FILE}";
+    wget "${1}" -q -O - | sed 's/>/>\n/g' | grep '\.txt' | sed 's/^.*http/http/g' | sed 's/\.txt.*$/\.txt/g' > "${TEMP_URI_FILE}";
 }
 
 # retrieves all morgue files referenced in $1
